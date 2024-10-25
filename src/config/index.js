@@ -12,4 +12,11 @@ module.exports = {
   jwt_refresh_expire: process.env.JWT_REFRESH_EXPIRE,
   client_side_host: process.env.CLIENT_SIDE_HOST,
   server_side_host: process.env.SERVER_SIDE_HOST,
+  db: {
+    host: process.env.DB_HOST,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    name: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+  },
 };

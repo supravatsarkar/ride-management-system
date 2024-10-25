@@ -12,8 +12,10 @@ const logger = winston.createLogger({
   level: "info", // Default level is 'info', can be adjusted as needed
   format: winston.format.combine(
     winston.format.timestamp(),
+    winston.format.prettyPrint(),
     winston.format.printf(
-      ({ timestamp, level, message }) => `${timestamp} [${level}]: ${message}`
+      ({ timestamp, level, message }) =>
+        `${timestamp} [${level}]: ${JSON.stringify(message, null, 2)}`
     )
   ),
   transports: [
@@ -31,9 +33,10 @@ if (process.env.NODE_ENV !== "production") {
       format: winston.format.combine(
         winston.format.colorize(),
         // winston.format.simple(),
+        winston.format.prettyPrint(),
         winston.format.printf(
           ({ timestamp, level, message }) =>
-            `${timestamp} [${level}]: ${message}`
+            `${timestamp} [${level}]: ${JSON.stringify(message)}`
         )
       ),
     })
