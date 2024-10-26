@@ -5,7 +5,7 @@ class BaseModel extends Model {
     return this.create(body, options);
   };
   _bulkInsertIntoDb = function (dataArray, options = {}) {
-    return this._model.bulkCreate(dataArray, options);
+    return this.bulkCreate(dataArray, options);
   };
 
   static _findOne = async function (filter = {}) {
@@ -28,7 +28,7 @@ class BaseModel extends Model {
     filter = {},
     order = [["createdAt", "DESC"]]
   ) {
-    const records = await this._model.findAll({
+    const records = await this.findAll({
       where: filter,
       order: order,
     });
@@ -76,8 +76,8 @@ class BaseModel extends Model {
     options["where"] = where;
     options["order"] = [["id", "DESC"]];
     console.log("options=>", options);
-    const total = await this._model.count({ where });
-    const records = await this._model.findAll(options);
+    const total = await this.count({ where });
+    const records = await this.findAll(options);
     const totalPages = Math.ceil(total / limit);
     // console.log("totalPages", totalPages);
     return { totalPages, currentPage: page, total, records };
@@ -92,7 +92,7 @@ class BaseModel extends Model {
         },
       });
     });
-    return this._model.findAll({
+    return this.findAll({
       where: {
         [Op.or]: filters,
       },
@@ -105,7 +105,7 @@ class BaseModel extends Model {
     include,
     orderBy = [["createdAt", "DESC"]]
   ) {
-    return this._model.findOne({
+    return this.findOne({
       include: include || [],
       where: filter,
       order: orderBy,
@@ -113,7 +113,7 @@ class BaseModel extends Model {
   };
 
   static _updateByFilter(update, whereEq, options = {}) {
-    return this._model.update(
+    return this.update(
       update,
       {
         where: whereEq,
@@ -124,13 +124,13 @@ class BaseModel extends Model {
   }
 
   static _softDelete(filter, options = {}) {
-    return this._model.destroy({
+    return this.destroy({
       where: filter,
       ...options,
     });
   }
   static _countByFilter(whereEq) {
-    return this._model.count({
+    return this.count({
       where: whereEq,
     });
   }
