@@ -14,3 +14,16 @@ const { connectDB } = require("./src/config/database.js");
     logger.error(`❌ ${error.message} Stack🔥${error.stack}`);
   }
 })();
+
+process.on("unhandledRejection", () => {
+  logger.error(
+    "❌ UnhandledRejection error detected.. Shutting down the server"
+  );
+  server.close(() => {
+    process.exit(1);
+  });
+});
+process.on("uncaughtException", () => {
+  logger.error("❌ UncaughtException error detected.. ");
+  process.exit(1);
+});

@@ -2,6 +2,9 @@ const cors = require("cors");
 const express = require("express");
 const morgan = require("morgan");
 const routePrint = require("./middlewares/routePrint");
+const { notfoundHandler } = require("./middlewares/notfoundHandler");
+const { globalErrorHandler } = require("./middlewares/globalErrorHandler");
+const { sendSuccessRes } = require("./utils/sendSuccessRes");
 
 const app = express();
 
@@ -14,8 +17,20 @@ app.use("/uploads", express.static("uploads"));
 app.use(morgan("tiny"));
 app.use(routePrint());
 
+// welcome route
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  sendSuccessRes(res, {
+    message: "Welcome to ride management system",
+  });
 });
+
+// API routes
+// app.use("/api/v1", );
+
+//404 handler
+app.all("*", notfoundHandler);
+
+// global error handler
+app.use(globalErrorHandler);
 
 module.exports = app;
