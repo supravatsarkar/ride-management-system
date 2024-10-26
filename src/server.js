@@ -1,7 +1,7 @@
-const config = require("./src/config/index.js");
-const logger = require("./src/helper/logger.js");
-const app = require("./src/app.js");
-const { connectDB } = require("./src/config/database.js");
+const config = require("./app/config/index.js");
+const logger = require("./app/helper/logger.js");
+const app = require("./app/app.js");
+const { connectDB } = require("./app/config/database.js");
 
 (async () => {
   try {
