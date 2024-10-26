@@ -1,10 +1,10 @@
-const { Sequelize, DataTypes, Model } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const { sequelizeConnection } = require("../../config/database");
-const constants = require("../../config/constants");
+const { BaseModel } = require("../../helper/BaseModel");
 
-class AdminModel extends Model {}
+class AdminModel extends BaseModel {}
 
-Admin.init(
+AdminModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,22 +14,14 @@ Admin.init(
     email: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      unique: true,
     },
     password: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
-    },
-    role: {
-      type: DataTypes.ENUM(
-        constants.ROLE.ADMIN,
-        constants.ROLE.DRIVER,
-        constants.ROLE.CLIENT
-      ),
-      allowNull: false,
-      defaultValue: constants.ROLE.CLIENT,
     },
     phoneNumber: {
       type: DataTypes.STRING(20),
@@ -50,3 +42,5 @@ Admin.init(
     modelName: "admins",
   }
 );
+
+module.exports = { AdminModel };

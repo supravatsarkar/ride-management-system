@@ -1,17 +1,18 @@
 const constants = require("../../config/constants");
+const { httpStatus } = require("../../helper/httpsStatus");
 const { catchAsync } = require("../../utils/catchAsync");
 const { sendErrorRes } = require("../../utils/sendErrorRes");
 const { sendSuccessRes } = require("../../utils/sendSuccessRes");
+const authService = require("./auth.service");
 
-const loginController = catchAsync((req, res) => {
+const registerController = catchAsync(async (req, res) => {
   const { userType } = req.params;
   let responseDate = {};
   if (constants.ROLE[String(userType).toUpperCase()] === constants.ROLE.ADMIN) {
-    console.log("admin");
+    responseDate = await authService.adminRegistration(req.body);
   } else if (
     constants.ROLE[String(userType).toUpperCase()] === constants.ROLE.DRIVER
   ) {
-    console.log("driver");
   } else if (
     constants.ROLE[String(userType).toUpperCase()] === constants.ROLE.CLIENT
   ) {
@@ -22,20 +23,15 @@ const loginController = catchAsync((req, res) => {
       statusCode: 404,
     });
   }
-  //   if (!Object.values(constants.ROLE).includes(userType)) {
-  //     return sendErrorRes(res, {
-  //       message: "User type not found",
-  //       statusCode: 404,
-  //     });
-  //   }
-  const { email, password } = req.body;
+
   return sendSuccessRes(res, {
-    message: "Executed successfully",
+    statusCode: httpStatus.CREATED,
+    message: "Register success!",
     data: responseDate,
   });
 });
 
-const registerController = (req, res) => {
+const loginController = (req, res) => {
   const { userType } = req.params;
   if (!Object.values(constants.ROLE).includes(userType)) {
     return sendErrorRes(res, {
@@ -47,4 +43,5 @@ const registerController = (req, res) => {
   return res.send({ userType, email, password });
 };
 
-module.exports = { loginController, registerController };
+const authController = { registerController, loginController };
+module.exports = authController;

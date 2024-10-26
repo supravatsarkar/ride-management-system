@@ -15,7 +15,7 @@ const globalErrorHandler = (err, req, res, next) => {
     stack = err.stack;
   }
 
-  logger.error(err.stack);
+  logger.error(`Error: ${message} ${stack}`);
   sendErrorRes(res, {
     stack: stack,
     message: message,
