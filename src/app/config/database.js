@@ -1,8 +1,8 @@
-const Sequelize = require("sequelize");
+const { Sequelize } = require("sequelize");
 const config = require(".");
 const logger = require("./../helper/logger");
 
-const sequelize = new Sequelize(
+const sequelizeConnection = new Sequelize(
   config.db.name,
   config.db.username,
   config.db.password,
@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
 // connect to database
 const connectDB = async () => {
   try {
-    await sequelize.authenticate();
+    await sequelizeConnection.authenticate();
     logger.info("Database connection has been established successfully.");
   } catch (error) {
     logger.error("Unable to connect to the database:");
@@ -26,7 +26,7 @@ const connectDB = async () => {
 };
 
 module.exports = {
-  sequelize,
+  sequelizeConnection,
   connectDB,
   getTransaction: () => sequelize.transaction(),
 };

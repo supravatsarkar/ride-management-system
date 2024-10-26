@@ -1,11 +1,12 @@
 const sendSuccessRes = (
   res,
-  { data = {}, message = "Executed successfully", statusCode = 200 }
+  { meta = {}, data = {}, message = "Executed successfully", statusCode = 200 }
 ) => {
   return res.status(statusCode).json({
     statusCode,
     success: true,
     message,
+    meta,
     data,
   });
 };

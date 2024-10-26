@@ -5,6 +5,7 @@ const routePrint = require("./middlewares/routePrint");
 const { notfoundHandler } = require("./middlewares/notfoundHandler");
 const { globalErrorHandler } = require("./middlewares/globalErrorHandler");
 const { sendSuccessRes } = require("./utils/sendSuccessRes");
+const router = require("./router");
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 // API routes
-// app.use("/api/v1", );
+app.use("/api/v1", router);
 
 //404 handler
 app.all("*", notfoundHandler);
