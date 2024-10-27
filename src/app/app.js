@@ -7,6 +7,7 @@ const { globalErrorHandler } = require("./middlewares/globalErrorHandler");
 const { sendSuccessRes } = require("./utils/sendSuccessRes");
 const router = require("./router");
 const cookieParser = require("cookie-parser");
+const ipTrack = require("./middlewares/iptrack");
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
 app.use(morgan("tiny"));
 app.use(routePrint());
+
+// ip track middleware for production
+app.use(ipTrack);
 
 // welcome route
 app.get("/", (req, res) => {

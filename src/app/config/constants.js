@@ -10,4 +10,5 @@ module.exports = {
     DEFAULT_SKIP: 0,
   },
   PRIVATE_FIELDS: ["password", "otp", "emailVerificationToken"],
+  RESTRICT_COUNTRY: ["AF", "SY", "IR"],
 };
