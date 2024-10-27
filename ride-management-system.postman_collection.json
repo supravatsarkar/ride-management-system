@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "5348b325-673f-4b6b-abf6-ef00e8dfa170",
+		"name": "ride-management-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19116876"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "admin-register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"supravat3@gmail.com\",\r\n    \"phoneNumber\": \"987654321\",\r\n    \"password\": \"Qwerty@123\",\r\n    \"name\":\"supravat sarkar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/admin/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"admin",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin-login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"supravat3@gmail.com\",\r\n    \"phoneNumber\": \"987654321\",\r\n    \"password\": \"Qwerty@123\",\r\n    \"name\":\"supravat sarkar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/admin/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"admin",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "generate-accessToken-By-refreshToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/generate-accessToken-by-refreshToken",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"generate-accessToken-by-refreshToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "otp-verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/otp-verify",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"otp-verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend-otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/resend-otp",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"resend-otp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "get-my-account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/getMyAccount",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"getMyAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-driver",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"password\": \"password123\",\r\n  \"phoneNumber\": \"1234567890\",\r\n  \"latitude\": 37.7749,\r\n  \"longitude\": -122.4194,\r\n  \"plateNumber\": \"ABC123\",\r\n  \"comfort\": \"simple\",\r\n  \"carModel\": \"Toyota Camry\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/create-driver",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"create-driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-driver",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"phoneNumber\": \"1234567890\",\r\n    \"latitude\": 37.7749,\r\n    \"longitude\": -122.4194,\r\n    \"plateNumber\": \"ABC125\",\r\n    \"comfort\": \"simple\",\r\n    \"carModel\": \"Toyota Camry\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/update-driver/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"update-driver",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-driver",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/delete-driver/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"delete-driver",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-driver",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/get-driver/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"get-driver",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-drivers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/get-driver/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"get-driver",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaXNPdHBWZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMDAwMTE2MywiZXhwIjoxNzMwNjA1OTYzfQ.I79Uem8cO74Xs5TYQswXvBM_e6tJDPBdpx5_lD5rN8Y",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:5050/api/v1",
+			"type": "string"
+		}
+	]
+}
