@@ -12,6 +12,7 @@ const {
 } = require("../../utils");
 const { AdminModel } = require("../admin/admin.model");
 const jwt = require("jsonwebtoken");
+const { DriverModel } = require("../driver/driver.model");
 
 const adminRegistration = async (payload) => {
   try {
@@ -55,6 +56,53 @@ const adminRegistration = async (payload) => {
     );
 
     return { ..._removePrivateFields(adminRes), accessToken, refreshToken };
+  } catch (error) {
+    logger.error(error.message);
+    throw error;
+  }
+};
+const driverRegistration = async (payload) => {
+  try {
+    const { password, email, ...restPayload } = payload;
+    const findDriver = await DriverModel._findOne({ email });
+    if (findAdmin) {
+      throw new AppError("Email already exists", httpStatus.BAD_REQUEST);
+    }
+    const hashPassword = await _encryptPassword(password);
+    const otp = _generateOtp(6);
+    let driverRes = await DriverModel._insertIntoDb({
+      email,
+      password: hashPassword,
+      role: constants.ROLE.ADMIN,
+      otp,
+      ...restPayload,
+    });
+
+    // send otp to email
+
+    findDriver = findDriver.toJSON();
+
+    //create access and refresh token
+    const accessToken = _createJwtToken(
+      {
+        id: adminRes.id,
+        role: constants.ROLE.DRIVER,
+        isOtpVerified: false,
+      },
+      config.jwt_access_secret,
+      config.jwt_access_expire
+    );
+
+    const refreshToken = _createJwtToken(
+      {
+        id: adminRes.id,
+        role: constants.ROLE.DRIVER,
+      },
+      config.jwt_refresh_secret,
+      config.jwt_refresh_expire
+    );
+
+    return { ..._removePrivateFields(driverRes), accessToken, refreshToken };
   } catch (error) {
     logger.error(error.message);
     throw error;
@@ -247,6 +295,7 @@ const resendOtp = async (token) => {
 
 const authService = {
   adminRegistration,
+  driverRegistration,
   adminLogin,
   generateAccessTokenByRefreshToken,
   otpVerify,

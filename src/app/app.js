@@ -22,7 +22,7 @@ app.use(morgan("tiny"));
 app.use(routePrint());
 
 // ip track middleware for production
-app.use(ipTrack);
+// app.use(ipTrack);
 
 // welcome route
 app.get("/", (req, res) => {

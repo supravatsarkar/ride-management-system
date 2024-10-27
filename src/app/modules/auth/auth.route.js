@@ -1,5 +1,6 @@
 const constants = require("../../config/constants");
 const { AppError } = require("../../errors/AppError");
+const ipTrack = require("../../middlewares/iptrack");
 const validateRequest = require("../../middlewares/validateRequest");
 const { sendErrorRes } = require("../../utils/sendErrorRes");
 const authController = require("./auth.controller");
@@ -9,11 +10,13 @@ const router = require("express").Router();
 
 router.post(
   "/:userType/register",
+  ipTrack,
   validateRequest(authValidation.userRegistrationSchema),
   authController.registerController
 );
 router.post(
   "/:userType/login",
+  ipTrack,
   validateRequest(authValidation.userLoginSchema),
   authController.loginController
 );

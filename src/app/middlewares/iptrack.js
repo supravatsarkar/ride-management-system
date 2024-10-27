@@ -3,9 +3,10 @@ const { httpStatus } = require("../helper/httpsStatus");
 const { sendErrorRes } = require("../utils/sendErrorRes");
 const constants = require("../config/constants");
 const { isProduction } = require("../config");
+const config = require("../config");
 
 const ipTrack = (req, res, next) => {
-  if (!isProduction) return next();
+  if (config.isLocal) return next();
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
   // test ips: AF "103.104.146.0", US ""207.97.227.239""
   const geo = geoip.lookup(ip);

@@ -11,4 +11,23 @@ module.exports = {
   },
   PRIVATE_FIELDS: ["password", "otp", "emailVerificationToken"],
   RESTRICT_COUNTRY: ["AF", "SY", "IR"],
+  DRIVER_STATUS: {
+    ACTIVE: "active",
+    INACTIVE: "inactive",
+    BUSY: "busy",
+  },
+  CAR_COMFORT_TYPE: {
+    SIMPLE: "simple",
+    ELITE: "elite",
+    CONVENIENT: "convenient",
+  },
+  FILTER_OPERATOR: {
+    EQUALS: "equals",
+    GREATER_THAN: "greaterThan",
+    LESS_THAN: "lessThan",
+  },
+  SORT_ORDER: {
+    ASC: "asc",
+    DESC: "desc",
+  },
 };

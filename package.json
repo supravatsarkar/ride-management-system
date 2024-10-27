@@ -12,7 +12,8 @@
     "dev": "nodemon ./src/server.js",
     "migrate:all": "npx sequelize-cli db:migrate",
     "migrate:undo:all": "npx sequelize-cli db:migrate:undo:all",
-    "seed:all": "npx sequelize-cli db:seed:all"
+    "seed:all": "npx sequelize-cli db:seed:all",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo --name"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/supravatsarkar/ride-management-system#readme",
   "dependencies": {
+    "@faker-js/faker": "^9.1.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

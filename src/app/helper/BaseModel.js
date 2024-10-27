@@ -1,4 +1,5 @@
 const { Model } = require("sequelize");
+const constants = require("../config/constants");
 
 class BaseModel extends Model {
   static _insertIntoDb = function (body, options = {}) {
@@ -35,13 +36,18 @@ class BaseModel extends Model {
     return records;
   };
 
-  static _getListByFilter = async function (
-    args = {},
+  static _getListByFilter = async function ({
+    search,
+    filter,
+    page,
+    limit,
     include,
     searchFields = [],
-    selectFields = []
-  ) {
-    const { search, filter, page, limit } = args;
+    selectFields = [],
+    sort = "createdAt",
+    order = constants.SORT_ORDER.ASC,
+  }) {
+    console.log({ sort, order });
     limit = Number(limit) ? Number(limit) : constants.PAGINATION.DEFAULT_LIMIT;
     page = Number(page) ? Number(page) : constants.PAGINATION.DEFAULT_PAGE;
     const where = {
@@ -50,7 +56,8 @@ class BaseModel extends Model {
     const options = {
       // offset: skip,
       // limit: limit ? parseInt(limit, 5) : 5,
-      order: [["createdAt", "DESC"]],
+      // order: [["createdAt", "DESC"]],
+      order: [[sort, order]],
       include: include || [],
       raw: true,
     };
@@ -74,7 +81,7 @@ class BaseModel extends Model {
     }
 
     options["where"] = where;
-    options["order"] = [["id", "DESC"]];
+    // options["order"] = [["id", "DESC"]];
     console.log("options=>", options);
     const total = await this.count({ where });
     const records = await this.findAll(options);
