@@ -45,11 +45,12 @@ const auth = (...userRoles) => {
         );
       }
       user = isAdminExist;
-    } else if (decodedPayload.role === constants.ROLE.DRIVER) {
-      // driver
-    } else if (decodedPayload.role === constants.ROLE.CLIENT) {
-      // client
     }
+    // else if (decodedPayload.role === constants.ROLE.DRIVER) {
+    //   // driver
+    // } else if (decodedPayload.role === constants.ROLE.CLIENT) {
+    //   // client
+    // }
 
     if (!user.isOtpVerified) {
       throw new AppError(

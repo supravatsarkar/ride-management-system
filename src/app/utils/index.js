@@ -1,8 +1,13 @@
 const bcrypt = require("bcrypt");
 const config = require("../config");
 const constants = require("../config/constants");
+const jwt = require("jsonwebtoken");
 const _encryptPassword = (password) => {
   return bcrypt.hash(password, config.bcrypt_salt_round);
+};
+
+const _isPasswordMatch = (password, hashPassword) => {
+  return bcrypt.compare(password, hashPassword);
 };
 
 const _randomString = (length) => {
@@ -35,9 +40,17 @@ const _removePrivateFields = (obj) => {
   return newObj;
 };
 
+const _createJwtToken = (jwtPayload, jwtSecret, expiresIn) => {
+  return jwt.sign(jwtPayload, jwtSecret, {
+    expiresIn,
+  });
+};
+
 module.exports = {
   _encryptPassword,
+  _isPasswordMatch,
   _generateOtp,
   _randomString,
   _removePrivateFields,
+  _createJwtToken,
 };

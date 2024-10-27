@@ -6,6 +6,7 @@ const { notfoundHandler } = require("./middlewares/notfoundHandler");
 const { globalErrorHandler } = require("./middlewares/globalErrorHandler");
 const { sendSuccessRes } = require("./utils/sendSuccessRes");
 const router = require("./router");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
 app.use(morgan("tiny"));

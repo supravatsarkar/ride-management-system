@@ -10,7 +10,7 @@ const globalErrorHandler = (err, req, res, next) => {
   let errorDetails = null;
 
   if (err instanceof ZodError) {
-    console.log("==>Zod validation error");
+    // console.log("==>Zod validation error");
     const simplifiedError = handleZodError(err);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
